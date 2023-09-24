@@ -1,8 +1,10 @@
+############ FILMOVÝ SLOVNÍK, KTERÝ PRACUJE SE ZADANÝMI SLUŽBAMI ############
+
 oddelovac = "=" * 62
 from pprint import pprint
 
+############ PROMĚNNÉ #######################################################
 sluzby = ("dostupne filmy", "detaily filmu", 'reziseri', "doporuc film")
-
 uzivatele = {
     "tomas": {"Shawshank Redemption", "The Godfather", "The Dark Knight"},
     "petr": {"The Godfather", "The Dark Knight"},
@@ -57,7 +59,7 @@ film_4 = {
     )
 }
 
-#spojíme všechny filmy dohromady
+############ PROMĚNNÁ PRO NÁZVY VŠECH FILMŮ ########################XXXXXXXXX
 
 filmy = [
     film_1.get("JMENO"),
@@ -66,7 +68,7 @@ filmy = [
     film_4.get("JMENO"),
 ]
 
-# uvítání a výpis nabídky
+############ UVÍTÁNÍ A VÝPIS NABÍDKY ########################################
 
 jmeno = input("Zadej jméno: ")
 if jmeno in uzivatele:
@@ -84,16 +86,15 @@ print(oddelovac)
 print(" | ".join(sluzby), end=" |\n") 
 print(oddelovac)
 
-# vyber služby
+############ VÝBĚR SLUŽEB ###################################################
 
 vyber_sluzby = input("Vyber sluzbu: ")
 
-
-# dostupné filmy
+############ VÝPIS FILMŮ ####################################################
 if vyber_sluzby == sluzby[0]:
     print("Naše filmy: ", ", ".join(filmy))
 
-# detaily filmu    
+############ DETAILY KONKRÉTNÍHO FILMU ######################################
 elif vyber_sluzby == sluzby[1]:
     film = input("Vyber film ")
     
@@ -108,13 +109,13 @@ elif vyber_sluzby == sluzby[1]:
     else:
         print("Zadaný název není v databázi.")
 
-# reziseri
+############ VÝPIS REŽISÉRŮ #################################################
 elif vyber_sluzby == sluzby[2]:
     reziseri = set([film_1["REZISER"], film_2["REZISER"],
                     film_3["REZISER"], film_4["REZISER"]])
     print(", ".join(reziseri), sep="\n")
 
-# doporučení filmu podle ostatních uživatelů
+############ DOPORUČENÍ FILMU OD OSTATNÍCH UŽIVATELŮ ########################
 elif vyber_sluzby == sluzby[3]:
     if jmeno == "tomas":
         tomas_marek = uzivatele["tomas"].symmetric_difference(uzivatele["marek"])
@@ -128,7 +129,11 @@ elif vyber_sluzby == sluzby[3]:
         marek_petr = uzivatele["marek"].symmetric_difference(uzivatele["petr"])
         marek_tomas = uzivatele["marek"].symmetric_difference(uzivatele["tomas"])
         print(marek_petr | marek_tomas)
-        
 
 print(oddelovac)
+############ ROZLOUČENÍ #####################################################
+print("""
+Děkujeme za využití našeho filmového slovníku.
+Těšíme se na Vaši příští návštěvu.
+""")
 
